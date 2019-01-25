@@ -65,12 +65,12 @@ def choose_partner(individual: Individual, population: Population, fitnesses: Di
 
 
 def consume_resources(cosmos: Cosmos) -> Tuple[Population, float]:
-    survivors = set()
+    survivors = []
     resources = cosmos.resources
     for individual in sorted(cosmos.population, key=lambda i: evaluate(cosmos.environment, i)):
         if resources >= individual.consumption_rate:
             resources -= individual.consumption_rate
-            survivors.add(individual)
+            survivors.append(individual)
         else:
             break
     return survivors, resources

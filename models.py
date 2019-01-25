@@ -45,6 +45,7 @@ class Individual:
     )
 
     def __hash__(self):
+        # todo : cache hash
         return hash((self.mutation_probability, self.consumption_rate, id(self.genome)))
 
 
