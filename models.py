@@ -26,6 +26,9 @@ class Gene:
         default_factory=lambda: tuple(choices(GENE_ITEMS_POOL, k=randint(*GENE_SIZE_LIMITS)))
     )
 
+    def __repr__(self):
+        return f"{self.__class__.__name__}(value='{''.join(self.value)}')"
+
 
 @dataclass(frozen=True)
 class Individual:

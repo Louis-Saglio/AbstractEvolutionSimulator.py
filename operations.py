@@ -41,9 +41,11 @@ def mate(individual1: Individual, individual2: Individual) -> Individual:
         if random.random() <= mutation_probability:
             gene = mutate(gene)
         genome.add(gene)
+    if random.random() < mutation_probability:
+        genome.add(Gene())
     return Individual(
         mutate_float(mutation_probability, mutation_probability),
-        mutate_float(mutation_probability, random.choice((individual1.consumption_rate, individual2.consumption_rate))),
+        random.choice((individual1.consumption_rate, individual2.consumption_rate)),
         genome,
     )
 
