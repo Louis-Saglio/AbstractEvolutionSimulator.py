@@ -1,12 +1,15 @@
 from conf import DEFAULT_COSMOS_RESOURCE_REGENERATION_RATE
+from metrics import MetricComputer
 from models import Cosmos
 from operations import evaluate, mate, choose_partner, consume_resources
 
 
 def main():
+    metric = MetricComputer()
+    metric.process.start()
     cosmos = Cosmos()
     fitnesses = {}
-    for i in range(10000):
+    for i in range(1000):
         try:
             if i % 100 == 0:
                 print(i)
@@ -23,9 +26,11 @@ def main():
                 new_generation.append(mate(individual, choose_partner(individual, cosmos.population, fitnesses)))
             cosmos.population += new_generation
             cosmos.resources += DEFAULT_COSMOS_RESOURCE_REGENERATION_RATE
+            metric.add(cosmos)
         except KeyboardInterrupt:
             break
-    return cosmos
+    metric.join()
+    return cosmos, metric.output_queue.get()
 
 
 if __name__ == '__main__':
