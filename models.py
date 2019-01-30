@@ -77,6 +77,10 @@ class Cosmos:
     resources: float = field(default=DEFAULT_COSMOS_RESOURCES)
 
 
+Environment = Iterable[Constraint]
+Population = Iterable[Individual]
+
+
 if __name__ == '__main__':
     assert Gene(("a", "b")) == Gene(("a", "b"))
     print(Individual())

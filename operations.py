@@ -1,12 +1,9 @@
 import random
 from itertools import zip_longest
-from typing import Iterable, Tuple, Dict
+from typing import Tuple, Dict
 
 import conf
-from models import Individual, Gene, Constraint, Cosmos
-
-Environment = Iterable[Constraint]
-Population = Iterable[Individual]
+from models import Individual, Gene, Constraint, Cosmos, Environment, Population
 
 
 def mutate(gene: Gene) -> Gene:
